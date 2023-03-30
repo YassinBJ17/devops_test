@@ -1,45 +1,29 @@
 pipeline {
     agent any
+    
     stages {
-        stage('GIT') {
+        stage('Checkout') {
             steps {
-                git url: 'https://github.com/Emna123/backDevOps.git', branch: 'develop'
+                git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
             }
         }
-        stage('MVN CLEAN') {
+        stage('Build') {
             steps {
-                sh 'mvn clean'
+                sh 'mvn clean package'
             }
         }
-        stage('MVN COMPILE') {
-            steps {
-                sh 'mvn compile'
-            }
-        }
-        stage('MVN TEST') {
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
-            post {
-              always {
-                junit '**/target/surefire-reports/TEST-*.xml'
-              }
-            }
-
-        }
-        stage('MVN SONARQUEBE') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
-                }
-            }
         }
     }
+    
     post {
         failure {
-            mail to: 'emna.bentijani@esprit.tn',
-            subject: 'Build failed',
-            body: 'The build has failed. Please check Jenkins for details.'
+            mail to: 'yassinbj17@gmail.com', 
+                 subject: 'Echec de construction Jenkins',
+                 body: 'La construction Jenkins a échoué pour le projet ${env.JOB_NAME}. Veuillez vérifier les journaux Jenkins pour plus d\'informations.'
         }
     }
 }
