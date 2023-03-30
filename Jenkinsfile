@@ -1,20 +1,20 @@
 pipeline { 
     agent any
+    triggers {
+        githubPush()
+    }
     
     stages {
-        stage('Checkout') {
+        stage('date') {
             steps {
-                git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
+                sh 'date'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
+                
+                git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
+                sh 'mvn clean install'
             }
         }
     }
