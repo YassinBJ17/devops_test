@@ -1,12 +1,11 @@
 pipeline {
-  
   agent any 
   stages {
     stage('Checkout') {
       steps {
         git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
         echo "Getting project from Git"
-        ssh "date"
+        sh "date"
       }
     }
     stage('Maven Clean') {
@@ -25,7 +24,7 @@ pipeline {
       }
     } 
   }
-post {
+  post {
     failure {
         script {
             def logContents = currentBuild.rawBuild.getLog(1000)
@@ -34,5 +33,5 @@ post {
                  body: "The build for ${env.JOB_NAME} ${env.BUILD_NUMBER} has failed. Please see the logs below for more information:\n\n${logContents}"
         }
     }
-}
+  }
 }
