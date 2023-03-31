@@ -32,6 +32,6 @@ pipeline {
                  subject: "Build failed for ${env.JOB_NAME} ${env.BUILD_NUMBER}",
                  body: "The build for ${env.JOB_NAME} ${env.BUILD_NUMBER} has failed. Please see the logs below for more information:\n\n${logContents}"
         } 
-    }
+    } 
   }
 }
