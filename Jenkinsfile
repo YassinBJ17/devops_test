@@ -37,10 +37,15 @@ pipeline {
       steps{
         script{
           
-          nexusArtifactUploader artifacts: [[artifactId: 'tpAchatProject',
-                                             classifier: '', file: 'target/tpAchat.jar',
-                                             type: 'jar']]
-          , credentialsId: 'jenkins-nexus',
+          nexusArtifactUploader artifacts: 
+            [
+              [artifactId: 'tpAchatProject',
+               classifier: '',
+               file: 'target/tpAchat.jar',
+               type: 'jar'
+              ]
+            ], 
+            credentialsId: 'jenkins-nexus',
             groupId: 'com.esprit.examen',
             nexusUrl: '192.168.33.10:8081',
             nexusVersion: 'nexus2',
