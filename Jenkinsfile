@@ -5,7 +5,7 @@ pipeline {
       steps {
         git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
         echo "Getting project from Git"
-         sh "date"
+        sh "date"
       }
     }
     stage('MVN Clean') {
