@@ -1,26 +1,26 @@
 pipeline {
   agent any 
   stages {
-    stage('Checkout') {
+    stage('GIT') {
       steps {
         git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
         echo "Getting project from Git"
         sh "date"
       }
     }
-    stage('Maven Clean') {
+    stage('MVN Clean') {
       steps {
         sh 'mvn clean'
       }
     }
-    stage('Maven Compile') {
+    stage('MVN Compile') {
       steps {
         sh 'mvn compile'
       }
     }
-    stage('Run Unit Tests') {
+    stage('Tests') {
       steps {
-        
+          echo "Run Unit Tests"
       }
     } 
   }
