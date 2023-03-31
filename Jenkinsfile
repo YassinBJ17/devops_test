@@ -4,7 +4,7 @@ pipeline {
     stage('GIT') { 
       steps { 
         git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
-        echo "Get ting project from Git"
+        echo "Getting project from Git"
         sh "date"
       }
     }
