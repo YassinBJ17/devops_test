@@ -1,7 +1,7 @@
 pipeline { 
   agent any      
   stages {   
-    stage('GIT') {
+    stage('GIT') { 
       steps { 
         git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
         echo "Getting project from Git"
