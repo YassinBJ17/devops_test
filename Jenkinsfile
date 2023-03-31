@@ -65,14 +65,11 @@ pipeline {
     }    
           
   }
-  post { 
-    failure {
-        script {
-            def logContents = currentBuild.rawBuild.getLog(1000)
-            mail to: 'yassinbj17@gmail.com',
-                 subject: "Build failed for ${env.JOB_NAME} ${env.BUILD_NUMBER}",
-                 body: "The build for ${env.JOB_NAME} ${env.BUILD_NUMBER} has failed. Please see the logs below for more information:\n\n${logContents}"
-        } 
-    } 
-  }
+ post {
+        failure {
+            mail to: 'emna.bentijani@esprit.tn',
+            subject: 'Build failed',
+            body: 'The build has failed. Please check Jenkins for details.'
+        }
+    }
 }
