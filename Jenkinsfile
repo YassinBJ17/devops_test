@@ -23,6 +23,13 @@ pipeline {
           echo 'mvn test'
       }
     } 
+     stage('MVN SONARQUEBE') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
   }
   post {
     failure {
