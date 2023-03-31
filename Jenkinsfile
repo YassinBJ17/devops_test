@@ -31,7 +31,7 @@ pipeline {
             }
         }
   }
-  post {
+  post { 
     failure {
         script {
             def logContents = currentBuild.rawBuild.getLog(1000)
