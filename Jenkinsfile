@@ -23,6 +23,13 @@ pipeline {
           echo 'mvn test'
       }
     } 
+    
+     stage('MVN Compile') {
+      steps {
+        sh 'mvn clean install'
+      }
+    }
+    
      stage('MVN SONARQUEBE') {
             steps {
                 withSonarQubeEnv('sonar') {
