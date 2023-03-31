@@ -1,8 +1,6 @@
 pipeline {
   agent any
-  environment {
-    SONAR_LOGIN = credentials('mon-sonarqube-login') // Créer un secret Jenkins pour stocker votre jeton d'authentification SonarQube
-  }
+ 
   stages {
     stage('Checkout') {
       steps {
@@ -19,12 +17,7 @@ pipeline {
         sh 'mvn compile'
       }
     }
-    stage('SonarQube Analysis') {
-      steps {
-        withSonarQubeEnv('SonarQube') { // Créer une configuration de serveur SonarQube nommée "SonarQube" dans la section "Gestion de configurations" de Jenkins
-          sh 'mvn sonar:sonar'
-        }
-      }
+   
     }
     stage('Run Unit Tests') {
       steps {
