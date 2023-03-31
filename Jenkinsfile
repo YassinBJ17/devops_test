@@ -3,7 +3,7 @@ pipeline {
   triggers { 
      githubPush()
   } 
-  stages {
+  stages { 
     stage('GIT') {
       steps { 
         git url: 'https://github.com/YassinBJ17/devops_test.git', branch: 'main'
